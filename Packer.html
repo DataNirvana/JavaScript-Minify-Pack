@@ -8,23 +8,24 @@
 		<script type="text/javascript">
 			function DoPack() {
 
-				let data = {
+				/*let data = {
 					"compilation_level": "SIMPLE_OPTIMIZATIONS",
 					"output_format": "json",
 					"output_info": "compiled_code",
 					"js_code": document.getElementById("Input").value
-				};
+				};*/
 
+//                let data = new URLSearchParams(new FormData(document.forms[0]));
 ///////////////////////////////////////////////////////////////////////////////////
 
-				let theHeaders = {
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Origin': '*',
-					'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-					'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-				};
+				//let theHeaders = { "Content-type": "application/x-www-form-urlencoded" };
+//					'Content-Type': 'application/json',
+//					'Access-Control-Allow-Origin': '*',
+//					'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+//					'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+//				};
 
-				console.log(new Headers(), theHeaders);
+				//console.log(new Headers(), theHeaders);
 
 /*				var xhr = new XMLHttpRequest();
 				xhr.open("POST", "https://closure-compiler.appspot.com/compile", true);
@@ -43,12 +44,21 @@
 				xhr.send(JSON.stringify(data));
 				*/
 
-
+//				fetch('https://closure-compiler.appspot.com/compile', {
+//					method: 'POST',
+//					body: data
+//				})
+//					.then(response => {
+//                        console.log(response);
+						//response.json();
+					//})
+                    //.then(data => console.log(data));
+/*
 				fetch("https://closure-compiler.appspot.com/compile", {
 				  method: "POST",
 				  body: JSON.stringify(data),
-				  headers: new Headers()
-//                  headers: theHeaders
+//				  headers: new Headers()
+                  headers: theHeaders
 //				}).then(res => {
 //				  console.log("Request complete! response:", res.js_code);
 //				}).then(response => response.text())
@@ -62,21 +72,29 @@
 				}).catch((err) => { console.log(err) });;
 
 //console.log(document.getElementById("Input").value);
-
+*/
 				let output = packer.pack(document.getElementById("Input").value, true, true);
 
 				document.getElementById("Output").value = output;
 			}
+
+
 		</script>
 	</head>
 	<body>
 		<form>
 			Pack my javascript files (run the scripts first through Google's <a href="https://closure-compiler.appspot.com/home">closure-compiler.appspot.com/home</a> to clean and minify them.  This should result in smaller files.
 			<br><br>
-			<textarea id="Input" type="text" rows="10" cols="100" ></textarea>
+			<textarea id="Input" name="js_code" type="text" rows="10" cols="100"></textarea>
 			<br><br>
-			<textarea id="Output" type="text" rows="10" cols="100" ></textarea>
+			<textarea id="Output" type="text" rows="10" cols="100"></textarea>
 			<br><br>
+
+			<input type="hidden" name="compilation_level" value="SIMPLE_OPTIMIZATIONS">
+			<input type="hidden" name="output_format" value="text">
+			<input type="hidden" name="output_info" value="compiled_code">
+
+
 			<a href="javaScript: DoPack();">Pack it</a>
 		</form>
 	</body>
