@@ -94,7 +94,7 @@ function escramble_758(){
 
 #jsInput = jsInput + "let content = `" + str(decoded_html) + "`;"
 
-jsInput = "DoPack();"
+jsInput = "function Test() { return packer.Pack('function DoPack()', true, true );}"
 
 val = html.render(script=jsInput, reload=False)
 print(val);
