@@ -1,17 +1,18 @@
 <html>
 <head>
-    <link rel="shortcut icon" href="favicon.ico" />
+
+    <link href="Styles/Site.min.css?v=3213" rel="stylesheet" type="text/css" />
+    <link href="Styles/Vis.min.css?v=3213" rel="stylesheet" type="text/css" charset='utf-8' />
 
     <script type="text/javascript">
         function DoGoogleCompile() {
             document.forms[0].submit();
-        }   
-        // json
+        }
     </script>
 </head>
 <body>
     <form action="https://closure-compiler.appspot.com/compile" method="POST">
-        <textarea id="Input" name="js_code" type="text" rows="10" cols="100">
+        <textarea id="Input" name="js_code" type="text" rows="11" cols="154" style="border-color:#dddddd;">
 function hello(name) {
 	// Greets the user
 	alert('Hello, ' + name);
@@ -23,23 +24,18 @@ hello('New user');
         <input type="hidden" name="compilation_level" value="SIMPLE_OPTIMIZATIONS">
         <input type="hidden" name="output_format" value="text">
         <input type="hidden" name="output_info" value="compiled_code">
-        <!--        <input type="hidden" name="output_file_name" value="default.js">        -->
-        <br><br>
-        <!--        <a href="javaScript: DoGoogleCompile();">Compile the code</a>-->
     </form>
 
     <script type="text/javascript">
 
         document.addEventListener("DOMContentLoaded", function () {
 
-            // Append the content
+            // Wire up the text box to record the number of characters
             let tb1 = document.getElementById("Input");
             tb1.onchange = function () {
 
                 document.getElementById("Char1").innerText = this.value.length;
             };
-
-
 
         });
 
