@@ -105,20 +105,27 @@
 	</head>
 	<body>
 		<form>
-			Pack my javascript files (run the scripts first through Google's <a href="https://closure-compiler.appspot.com/home">closure-compiler.appspot.com/home</a> to clean and minify them.  This should result in smaller files.
-			<br><br>
-			<div>Step 1 - add your code here</div>
-			<div><a href="javaScript: DoStep2();">DoStep1</a></div>
+			<h2>Javascript minifier and packer</h2>
+			Minifies javascript files by running the scripts through Google's <a href="https://closure-compiler.appspot.com/home">closure-compiler.appspot.com/home</a> to clean and minify them.
+			This should result in smaller files which are then packed using Dean Edward's packer.  This should further reduce the file size and obfuscate the code.
+			
+			<h3>Step 1 - Minify</h3>
+			<div>Add your code in the box below and <a href="javaScript: DoStep2();">DoStep1</a></div>
 
 			<iframe id="Step1Frame" width="800" height="180" src="Step1.html"> </iframe>
-			<br><br>
-
-			<div>Step 2 - paste the output here and then <a href="javaScript: DoPack();">Pack it</a></div>
 			
-			<textarea id="Input" name="js_code" type="text" rows="10" cols="100"></textarea>
+			
 
-			<div>Collect your output here</div>
+			<h3>Step 2 - copy paste</h3>
+			<div>Paste the output here</div>
+
+			<textarea id="Input" name="js_code" type="text" rows="10" cols="100"></textarea>
+			<div>Number of characters <span id="Char2">0</span></div>
+
+			<h3>Step 3 - Pack</h3>
+			<div><a href="javaScript: DoPack();">Pack it</a> and then collect your output here</div>
 			<textarea id="Output" type="text" rows="10" cols="100"></textarea>
+			<div>Number of characters <span id="Char3">0</span></div>
 			<br><br>
 
 			<input type="hidden" name="compilation_level" value="SIMPLE_OPTIMIZATIONS">
@@ -132,7 +139,29 @@
 
 		</form>
 
-		
+		<script type="text/javascript">
 
-	</body>
-</html>
+			document.addEventListener("DOMContentLoaded", function () {
+
+                let tb2 = document.getElementById("Input");
+                tb2.onchange = function () {
+
+                    document.getElementById("Char2").innerText = this.value.length;
+                };
+
+                let tb3 = document.getElementById("Output");
+                tb3.onchange = function () {
+
+                    document.getElementById("Char3").innerText = this.value.length;
+                };
+
+				            
+
+
+            });
+
+
+		</script>
+
+	</body >
+</html >

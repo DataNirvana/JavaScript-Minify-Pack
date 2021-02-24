@@ -18,6 +18,8 @@ function hello(name) {
 }
 hello('New user');
     </textarea>
+        <div>Number of characters <span id="Char1">0</span></div>
+
         <input type="hidden" name="compilation_level" value="SIMPLE_OPTIMIZATIONS">
         <input type="hidden" name="output_format" value="text">
         <input type="hidden" name="output_info" value="compiled_code">
@@ -25,5 +27,24 @@ hello('New user');
         <br><br>
         <!--        <a href="javaScript: DoGoogleCompile();">Compile the code</a>-->
     </form>
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Append the content
+            let tb1 = document.getElementById("Input");
+            tb1.onchange = function () {
+
+                document.getElementById("Char1").innerText = this.value.length;
+            };
+
+
+
+        });
+
+
+    </script>
+
 </body>
 </html>
