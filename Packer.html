@@ -7,13 +7,15 @@
 
 		<script type="text/javascript">
 
-			function DoStep1() {
+			function DoStep2() {
 				let myIF = document.getElementById("Step1Frame");
                 let myIFDoc = (myIF.contentWindow || myIF.contentDocument);
 				if (myIFDoc.document) myIFDoc = myIFDoc.document;
 
 				// Append the content
-				myIFDoc.getElementById("Input").value = document.getElementById("Input").value;
+//				myIFDoc.getElementById("Input").value = document.getElementById("Input").value;
+
+				// Run the form
                 myIFDoc.forms[0].submit();
 
 			}
@@ -21,11 +23,11 @@
 
 			function DoPack() {
 
-                let myIF = document.getElementById("Step1Frame");
-                let myIFDoc = (myIF.contentWindow || myIF.contentDocument);
-                if (myIFDoc.document) myIFDoc = myIFDoc.document;
+//                let myIF = document.getElementById("Step1Frame");
+//                let myIFDoc = (myIF.contentWindow || myIF.contentDocument);
+//                if (myIFDoc.document) myIFDoc = myIFDoc.document;
 
-				let contents = myIFDoc.body.content;
+//				let contents = myIFDoc.body.content;
 
 				/*let data = {
 					"compilation_level": "SIMPLE_OPTIMIZATIONS",
@@ -92,8 +94,8 @@
 
 //console.log(document.getElementById("Input").value);
 */
-				//let output = packer.pack(document.getElementById("Input").value, true, true);
-                let output = packer.pack(contents, true, true);
+				let output = packer.pack(document.getElementById("Input").value, true, true);
+                //let output = packer.pack(contents, true, true);
 
 				document.getElementById("Output").value = output;
 			}
@@ -105,14 +107,17 @@
 		<form>
 			Pack my javascript files (run the scripts first through Google's <a href="https://closure-compiler.appspot.com/home">closure-compiler.appspot.com/home</a> to clean and minify them.  This should result in smaller files.
 			<br><br>
-				<textarea id="Input" name="js_code" type="text" rows="10" cols="100">
-				    function hello(name) {
-				      // Greets the user
-				      alert('Hello, ' + name);
-					}
-					hello('New user');
-</textarea>
+			<div>Step 1 - add your code here</div>
+			<div><a href="javaScript: DoStep2();">DoStep1</a></div>
+
+			<iframe id="Step1Frame" width="800" height="180" src="Step1.html"> </iframe>
 			<br><br>
+
+			<div>Step 2 - paste the output here and then <a href="javaScript: DoPack();">Pack it</a></div>
+			
+			<textarea id="Input" name="js_code" type="text" rows="10" cols="100"></textarea>
+
+			<div>Collect your output here</div>
 			<textarea id="Output" type="text" rows="10" cols="100"></textarea>
 			<br><br>
 
@@ -121,13 +126,13 @@
 			<input type="hidden" name="output_info" value="compiled_code">
 
 
-			<a href="javaScript: DoStep1();">DoStep1</a>
+
 			<br /><br />
 
-			<a href="javaScript: DoPack();">Pack it</a>
+
 		</form>
 
-		<iframe id="Step1Frame" width="500" height="400" src="Step1.html"> </iframe>
+		
 
 	</body>
 </html>

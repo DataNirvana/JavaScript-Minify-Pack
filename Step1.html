@@ -11,16 +11,19 @@
 </head>
 <body>
     <form action="https://closure-compiler.appspot.com/compile" method="POST">
-        <p>Type JavaScript code to optimize here:</p>
-
         <textarea id="Input" name="js_code" type="text" rows="10" cols="100">
+function hello(name) {
+	// Greets the user
+	alert('Hello, ' + name);
+}
+hello('New user');
     </textarea>
         <input type="hidden" name="compilation_level" value="SIMPLE_OPTIMIZATIONS">
         <input type="hidden" name="output_format" value="text">
         <input type="hidden" name="output_info" value="compiled_code">
-        <input type="hidden" name="output_file_name" value="default.js">        
+        <!--        <input type="hidden" name="output_file_name" value="default.js">        -->
         <br><br>
-        <a href="javaScript: DoGoogleCompile();">Compile the code</a>
+        <!--        <a href="javaScript: DoGoogleCompile();">Compile the code</a>-->
     </form>
 </body>
 </html>
