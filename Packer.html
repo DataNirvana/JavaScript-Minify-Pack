@@ -10,13 +10,22 @@
 			function DoStep1() {
 				let myIF = document.getElementById("Step1Frame");
                 let myIFDoc = (myIF.contentWindow || myIF.contentDocument);
-                if (myIFDoc.document) myIFDoc = myIFDoc.document;
+				if (myIFDoc.document) myIFDoc = myIFDoc.document;
+
+				// Append the content
+				myIFDoc.getElementById("Input").value = document.getElementById("Input").value;
                 myIFDoc.forms[0].submit();
 
 			}
 
 
 			function DoPack() {
+
+                let myIF = document.getElementById("Step1Frame");
+                let myIFDoc = (myIF.contentWindow || myIF.contentDocument);
+                if (myIFDoc.document) myIFDoc = myIFDoc.document;
+
+				let contents = myIFDoc.body.content;
 
 				/*let data = {
 					"compilation_level": "SIMPLE_OPTIMIZATIONS",
@@ -83,7 +92,8 @@
 
 //console.log(document.getElementById("Input").value);
 */
-				let output = packer.pack(document.getElementById("Input").value, true, true);
+				//let output = packer.pack(document.getElementById("Input").value, true, true);
+                let output = packer.pack(contents, true, true);
 
 				document.getElementById("Output").value = output;
 			}
@@ -95,7 +105,13 @@
 		<form>
 			Pack my javascript files (run the scripts first through Google's <a href="https://closure-compiler.appspot.com/home">closure-compiler.appspot.com/home</a> to clean and minify them.  This should result in smaller files.
 			<br><br>
-			<textarea id="Input" name="js_code" type="text" rows="10" cols="100"></textarea>
+				<textarea id="Input" name="js_code" type="text" rows="10" cols="100">
+				    function hello(name) {
+				      // Greets the user
+				      alert('Hello, ' + name);
+					}
+					hello('New user');
+</textarea>
 			<br><br>
 			<textarea id="Output" type="text" rows="10" cols="100"></textarea>
 			<br><br>
